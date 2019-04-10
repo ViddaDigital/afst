@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "declaration": true,
+    "target": "es6",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "lib": ["dom", "es2017"]
+  },
+  "include": ["./lib/**/*"],
+  "exclude": ["node_modules"]
+}
