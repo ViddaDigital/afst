@@ -1,7 +1,10 @@
+export type ReadWriteContentFunction = (content: string) => string
+
 export interface File {
   type: 'file'
   name: string
-  content: string
+  content: string | ReadWriteContentFunction
+  options?: FileOptions
 }
 
 export interface Directory {
@@ -17,4 +20,9 @@ export interface AbstractFileSystemTree {
 
 export interface ASFTOptions {
   log: boolean
+}
+
+export interface FileOptions {
+  mode?: number | string
+  overwrite?: boolean
 }

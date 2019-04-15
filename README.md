@@ -105,13 +105,13 @@ You can also use the builder to create the tree like this:
 ```typescript
 new AFST({path: '/some/kind/of/path'})
   .dir('a', a => a
-     .file('c.txt', 'Text content')
-     .file('d.md', 'Markdown content')
-     .dir('e', e => {
-       e.file('f', 'File without extension')
-       e.file('g', 'File without extension')
-       return e
-     })
+    .file('c.txt', 'Text content')
+    .file('d.md', 'Markdown content')
+    .dir('e', e => {
+      e.file('f', 'File without extension')
+      e.file('g', 'File without extension')
+      return e
+    })
   )
   .file('.b', 'Some dotfile content')
   .write()
@@ -128,3 +128,20 @@ This will create these files and directories:
 │        └── g
 └── .b
 ```
+
+## Updating existing file content
+
+To update file content provide a function instead of a string for content like so:
+
+```typescript
+new AFST({path: '/some/kind/of/path'})
+  .file('c.txt', 'Content always replaces content')
+  .file('d.txt', content =>
+    content
+      .replace("foo", "bar")
+      .replace("baz", "baq")
+  )
+  .write()
+```
+
+If a file exists the content will be read and provided as a string to your function.
