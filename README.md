@@ -150,8 +150,8 @@ If a file exists the content will be read and provided as a string to your funct
 
 ```typescript
 new AFST({path: '/some/kind/of/path'})
-  .file_if(false, 'This file is not created')
-  .file_if(true, 'This file is created')
+  .file_if(false, "1.txt", 'This file is not created')
+  .file_if(true, "2.txt", 'This file is created')
   .dir_if(true, dir =>
     dir
       .file("a.txt", 'This file is created')
@@ -162,5 +162,7 @@ new AFST({path: '/some/kind/of/path'})
       .file("a.txt", 'This file is not created')
       .file("b.txt", 'This file is not created')
   )
+  .file_unless(false, "3.txt", 'You can flip the condition with file_unless')
+  .dir_unless(false, 'four', 'You can flip the condition with dir_unless')
   .write()
 ```
