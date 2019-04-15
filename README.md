@@ -131,7 +131,7 @@ This will create these files and directories:
 
 ## Updating existing file content
 
-To update file content provide a function instead of a string for content like so:
+To update file content provide a function like so:
 
 ```typescript
 new AFST({path: '/some/kind/of/path'})
@@ -144,4 +144,23 @@ new AFST({path: '/some/kind/of/path'})
   .write()
 ```
 
-If a file exists the content will be read and provided as a string to your function.
+If a file exists the content will be read and provided as a string to your function during writing.
+
+## Conditional directories and files
+
+```typescript
+new AFST({path: '/some/kind/of/path'})
+  .file_if(false, 'This file is not created')
+  .file_if(true, 'This file is created')
+  .dir_if(true, dir =>
+    dir
+      .file("a.txt", 'This file is created')
+      .file("b.txt", 'This file is created')
+  )
+  .dir_if(false, dir =>
+    dir
+      .file("a.txt", 'This file is not created')
+      .file("b.txt", 'This file is not created')
+  )
+  .write()
+```
