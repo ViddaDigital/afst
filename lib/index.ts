@@ -83,7 +83,7 @@ class ASFT {
     if (node.type == 'file') {
       const exists = fs.existsSync(_path)
 
-      if (exists && node.options && node.options.overwrite) {
+      if (exists && node.options && !node.options.overwrite) {
         console.log(`Skipping existing file: ${_path}`)
         return
       }
